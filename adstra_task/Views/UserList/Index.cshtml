@@ -1,0 +1,37 @@
+﻿@model IEnumerable<adstra_task.Models.UsersList>
+@{ 
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+        <h1 class="text-center text-primary">All Users</h1>
+        <a class="btn btn-sm btn-success m-1" asp-controller="UserList" asp-action="Create">Create new User</a>
+        <table class="table table-bordered">
+            <tr class="text-center">
+                <th>UserID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>E-mail</th>
+            </tr>
+            @foreach (var d in Model)
+            {
+        <tr class="text-center">
+
+            <td class="table-primary text-center">@d.Id</td>
+            <td class="table-secondary text-center">@d.FirstName</td>
+            <td class="table-success text-center">@d.LastName</td>
+            <td class="table-danger text-center">@d.PhoneNumber</td>
+            <td class="table-warning text-center">@d.Email</td>
+            <td >
+                <a class="btn btn-sm btn-warning" asp-controller="UsersList" asp-action="Update" asp-route-id="@d.Id">Update</a>
+                </td> 
+        </tr>
+
+            }
+        </table>
+    </div>
+    </div>
+</div> 
