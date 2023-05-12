@@ -1,9 +1,11 @@
 ﻿using adstra_task.Data;
 using adstra_task.Models;
+using adstra_task.Models.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace adstra_task.Controllers
@@ -18,9 +20,23 @@ namespace adstra_task.Controllers
         }
         public IActionResult Index()
         {
-            var result = context.usersLists.ToList();
-             return View(result);
+            try
+            {
+                var AllUsers = context.usersLists.ToList();
+                
+                return View(AllUsers);
+            }
+            catch
+            {
+                var error = "Error Message".ToString();
+                return View(error);
+            }
+
+
+
         }
+
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -52,9 +68,27 @@ namespace adstra_task.Controllers
         }
 
 
-        public IActionResult Update()
+        public IActionResult Update(UsersList model)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                var user = new UsersList()
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    PhoneNumber = model.PhoneNumber,
+                    Email = model.Email
+
+                };
+                context.usersLists.Update(user);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["error"] = "Empty Field Can't Submit";
+                return View();
+            }
         }
     }
 }
