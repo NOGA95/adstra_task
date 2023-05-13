@@ -19,11 +19,13 @@ namespace adstra_task.Models.Repositories
         public void Add(UsersList ObjSave)
         {
             _context.usersLists.Add(ObjSave);
+            _context.SaveChanges();
         }
 
         public IEnumerable<UsersList> AllUsers()
         {
             return _context.usersLists.ToList();
+            
 
         }
 
@@ -35,6 +37,8 @@ namespace adstra_task.Models.Repositories
             if (ObjToDelete != null)
             {
                 _context.usersLists.Remove(ObjToDelete);
+                _context.SaveChanges();
+
             }
         }
 
@@ -48,6 +52,8 @@ namespace adstra_task.Models.Repositories
                 ObjToUpdate.PhoneNumber = ObjUpdate.PhoneNumber;
                 ObjToUpdate.Email = ObjUpdate.Email;
             }
+            _context.SaveChanges();
+
         }
     }
 }

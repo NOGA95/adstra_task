@@ -1,6 +1,7 @@
 ﻿using adstra_task.Data;
 using adstra_task.Models;
 using adstra_task.Models.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace adstra_task.Controllers
 {
+    [Authorize]
     public class UserListController : Controller
     {
         private readonly AuthDBContext context;

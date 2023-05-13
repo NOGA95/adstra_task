@@ -20,8 +20,9 @@ namespace adstra_task.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("AuthDBContextConnection")));
 
-                services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
                     .AddEntityFrameworkStores<AuthDBContext>();
+
             });
         }
     }

@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     Layout = "/Views/shared/_layout.cshtml";
 
 }
@@ -9,16 +9,38 @@
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">
                     <li class="nav-item">
-                        <a class="nav-link" href=''>Sign in</a>
+                        <a class="nav-link" href='/Identity/Account/Login'>Sign in</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href=''>Sign up</a>
+                        <a class="nav-link" href='/Identity/Account/Register'>Sign up</a>
                     </li>
                 </ul>
             </div>
             <div class="card-content">
-
+                <div class="row">
+                    <div class="col-md-12">
+                        @RenderBody()
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+@section scripts{
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+    
+        $(function () {
+            var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
+            $('ul a').each(function () {
+                if (this.href === path) {
+                    $(this).addClass('active');
+                }
+            })
+        })
+
+
+    </script>
+
+}
