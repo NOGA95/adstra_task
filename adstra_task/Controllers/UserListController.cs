@@ -45,52 +45,51 @@ namespace adstra_task.Controllers
 
              return View();
         }
-        [HttpPost]
-        public IActionResult Create(UsersList model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = new UsersList()
-                {
-                    FirstName =model.FirstName,
-                    LastName =model.LastName,
-                    PhoneNumber=model.PhoneNumber,
-                    Email=model.Email
+        //public IActionResult Create(UsersList model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var user = new UsersList()
+        //        {
+        //            FirstName = model.FirstName,
+        //            LastName = model.LastName,
+        //            PhoneNumber = model.PhoneNumber,
+        //            Email = model.Email
 
-                };
-                context.usersLists.Add(user);
-                context.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                TempData["error"] = "Empty Field Can't Submit";
-                return View();
-            }
-        }
+        //        };
+        //        context.usersLists.Add(user);
+        //        context.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    else
+        //    {
+        //        TempData["error"] = "Empty Field Can't Submit";
+        //        return View();
+        //    }
+        //}
 
 
-        public IActionResult Update(UsersList model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = new UsersList()
-                {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    PhoneNumber = model.PhoneNumber,
-                    Email = model.Email
+        //public IActionResult Update(UsersList model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var user = new UsersList()
+        //        {
+        //            FirstName = model.FirstName,
+        //            LastName = model.LastName,
+        //            PhoneNumber = model.PhoneNumber,
+        //            Email = model.Email
 
-                };
-                context.usersLists.Update(user);
-                context.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                TempData["error"] = "Empty Field Can't Submit";
-                return View();
-            }
-        }
+        //        };
+        //        context.usersLists.Update(user);
+        //        context.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    else
+        //    {
+        //        TempData["error"] = "Empty Field Can't Submit";
+        //        return View();
+        //    }
+        //}
     }
 }

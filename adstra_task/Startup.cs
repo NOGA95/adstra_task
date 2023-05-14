@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using System.Data.SqlClient;
 using adstra_task.Data;
+using adstra_task.Models.Repositories;
 
 namespace adstra_task
 {
@@ -33,6 +34,7 @@ namespace adstra_task
             services.AddMvc();
             services.AddDbContext<AuthDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AuthDBContextConnection")));
             services.AddRazorPages();
+            services.AddScoped<IUserListRepo, UserListRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

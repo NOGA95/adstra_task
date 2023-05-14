@@ -7,10 +7,10 @@
     <div class="row">
         <div class="col-8 offset-2">
             <h1 class="text-center text-primary">All Users</h1>
-            <a class="btn btn-sm btn-success m-1" asp-controller="Home" asp-action="Create">Create new User</a>
+            <a class="btn btn-sm btn-success m-1" asp-area="Identity" asp-page="/Account/Register">Create new User</a>
             <table class="table table-bordered">
                 <tr class="text-center">
-                    <th>UserID</th>
+                    @*<th>UserID</th>*@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Phone Number</th>
@@ -20,7 +20,7 @@
                 {
                     <tr class="text-center">
 
-                        <td class="table-primary text-center">@d.Id</td>
+                        @*<td class="table-primary text-center">@d.Id</td>*@
                         <td class="table-secondary text-center">@d.FirstName</td>
                         <td class="table-success text-center">@d.LastName</td>
                         <td class="table-danger text-center">@d.PhoneNumber</td>

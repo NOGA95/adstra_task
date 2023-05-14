@@ -1,17 +1,17 @@
-﻿using System;
+﻿using adstra_task.Areas.Identity.Data;
+using adstra_task.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace adstra_task.Models.Repositories
 {
-    interface IUserListRepo
+   public interface IUserListRepo
     {
-        void Add(UsersList ObjSave);
-        IEnumerable<UsersList> AllUsers();
-        void Update(UsersList ObjUpdate);
-        void Delete(UsersList ObjDelete);
-
-
+        public ApplicationUser GetUserByID(string userid);
+        void Update(EditUserVM ObjToUpdate);
+        void Delete(string id);
+        IEnumerable<ApplicationUser>  GetUserIDByName(string username);
     }
 }

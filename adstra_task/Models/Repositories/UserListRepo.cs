@@ -1,8 +1,12 @@
-﻿using adstra_task.Data;
+﻿using adstra_task.Areas.Identity.Data;
+using adstra_task.Data;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
+using adstra_task.ViewModel;
 
 namespace adstra_task.Models.Repositories
 {
@@ -16,24 +20,28 @@ namespace adstra_task.Models.Repositories
             _context = context;
         }
 
-        public void Add(UsersList ObjSave)
+       
+
+        
+        public IEnumerable<ApplicationUser> GetUserIDByName(string username)
         {
-            _context.usersLists.Add(ObjSave);
-            _context.SaveChanges();
+            try
+            {
+                var name = username;
+                return _context.usersLists.FromSqlRaw("Select * From AspNetUsers Where UserName = {0}", name).ToList();
+               
+
+            }
+           catch (Exception ex)
+            {
+                string s = ex.Message;
+                return null;
+            }
         }
 
-        public IEnumerable<UsersList> AllUsers()
+        public void Delete(string Id)
         {
-            return _context.usersLists.ToList();
-            
-
-        }
-
-
-
-        public void Delete(UsersList ObjDelete)
-        {
-            var ObjToDelete = _context.usersLists.SingleOrDefault(m => m.Id == ObjDelete.Id);
+            var ObjToDelete = _context.usersLists.SingleOrDefault(m => m.Id == Id);
             if (ObjToDelete != null)
             {
                 _context.usersLists.Remove(ObjToDelete);
@@ -42,18 +50,21 @@ namespace adstra_task.Models.Repositories
             }
         }
 
-        public void Update(UsersList ObjUpdate)
+        public ApplicationUser GetUserByID(string userid)
         {
-            var ObjToUpdate = _context.usersLists.FirstOrDefault(m => m.Id == ObjUpdate.Id);
+            return _context.usersLists.FirstOrDefault(m => m.Id == userid);
+        }
+        public void Update(EditUserVM ObjToUpdate)
+        {
+            var ObjToUpdate = _context.usersLists.FirstOrDefault(m => m.Id == Id);
             if (ObjToUpdate != null)
             {
-                ObjToUpdate.FirstName = ObjUpdate.FirstName;
-                ObjToUpdate.LastName = ObjUpdate.LastName;
-                ObjToUpdate.PhoneNumber = ObjUpdate.PhoneNumber;
-                ObjToUpdate.Email = ObjUpdate.Email;
+                ObjToUpdate.FirstName = ObjToUpdate.FirstName;
+                ObjToUpdate.LastName = ObjToUpdate.LastName;
+                ObjToUpdate.PhoneNumber = ObjToUpdate.PhoneNumber.ToString();
+                ObjToUpdate.Email = ObjToUpdate.Email;
             }
             _context.SaveChanges();
-
         }
     }
 }

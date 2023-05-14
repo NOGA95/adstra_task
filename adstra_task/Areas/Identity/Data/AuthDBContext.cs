@@ -20,22 +20,10 @@ namespace adstra_task.Data
             throw new NotImplementedException();
         }
 
-        internal static object GetConnectionString()
-        {
-            //var conn = ConfigurationManager.ConnectionStrings["AuthDBContextConnection"].ConnectionString;
-            //var csb = new SqlConnectionStringBuilder(conn);
-            //string dbName = csb.InitialCatalog;
-
-            //string sqlServerInstance = "(localdb)\\mssqllocaldb";
-
-            return "Data Source=" + "" + ";Initial Catalog=" + "";
+       
 
 
-        }
-
-
-
-        public DbSet<UsersList> usersLists { get; set; }
+        public DbSet<ApplicationUser> usersLists { get; set; }
 
 
     }
