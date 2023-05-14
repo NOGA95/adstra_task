@@ -54,15 +54,15 @@ namespace adstra_task.Models.Repositories
         {
             return _context.usersLists.FirstOrDefault(m => m.Id == userid);
         }
-        public void Update(EditUserVM ObjUpdate)
+        public void Update(ApplicationUser ObjUpdate)
         {
             var ObjToUpdate = _context.usersLists.FirstOrDefault(m => m.Id == ObjUpdate.Id);
             if (ObjToUpdate != null)
             {
-                ObjToUpdate.FirstName = ObjToUpdate.FirstName;
-                ObjToUpdate.LastName = ObjToUpdate.LastName;
-                ObjToUpdate.PhoneNumber = ObjToUpdate.PhoneNumber.ToString();
-                ObjToUpdate.Email = ObjToUpdate.Email;
+                ObjToUpdate.FirstName = ObjUpdate.FirstName;
+                ObjToUpdate.LastName = ObjUpdate.LastName;
+                ObjToUpdate.PhoneNumber = ObjUpdate.PhoneNumber.ToString();
+                ObjToUpdate.Email = ObjUpdate.Email;
             }
             _context.SaveChanges();
         }

@@ -42,12 +42,14 @@ namespace adstra_task.Controllers
         public IActionResult Privacy()
         {
             return View();
-        } 
+        }
+
+        [HttpGet]
         public IActionResult Update(string id)
         {
             try
             {
-                var user =  _users.GetUserByID(id);
+                var user = _users.GetUserByID(id);
                 if (user == null)
                 {
                     ViewBag.ErrorMessage = $"User With Id = {id} cannot be found";
@@ -75,29 +77,28 @@ namespace adstra_task.Controllers
             }
 
         }
-
-        public IActionResult Edit(string id)
+        [HttpPost]
+        public async Task<IActionResult> Update(EditUserVM UserDetails)
         {
             try
             {
-                var user = _users.GetUserByID(id);
-                var edituser = new ApplicationUser();
-
-                var model = new EditUserVM
+                var model = new ApplicationUser
                 {
-                    Id = user.Id,
-                    Email = user.Email,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    PhoneNumber = user.PhoneNumber
+                    Id = UserDetails.Id,
+                    Email = UserDetails.Email,
+                    FirstName = UserDetails.FirstName,
+                    LastName = UserDetails.LastName,
+                    PhoneNumber = UserDetails.PhoneNumber
 
                 };
-                _users.Update(model);
-                return RedirectToAction("Index");
+
+                 _users.Update(model);
+                var user =_userManager.UpdateAsync(model);
+                return RedirectToAction("Index", user);
+
             }
             catch (Exception ex)
             {
-                ViewBag.ErrorMessage = $"User With Id = {id} cannot be found";
                 return View("NotFound");
 
             }

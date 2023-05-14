@@ -34,4 +34,54 @@
             </table>
         </div>
     </div>
-</div> 
+</div>
+
+
+<script>
+    $(document).ready(function () {
+
+        $(document).on('click', '#Update', function () {
+
+
+            var dataToSave = {
+
+                Id: $("#Id").val(),
+                FirstName: $("#FirstName").val(),
+                LastName: $("#LastName").val(),
+                PhoneNumber: $("#PhoneNumber").val(),
+                Email: $("#Email").val()
+
+            };
+            $.ajax({
+                type: "POST",
+                url: "/Home/Edit",
+                data: JSON.stringify(dataToSave),
+                contentType: 'application/json',
+                success: function (data) {
+
+                    setTimeout(function () { dialog.modal('hide'); }, 1000);
+                    if (data.Code == 0) {
+                        toastr.error(data.Msg);
+                    }
+                    else if (data.Code == 1) {
+                        $('#myModal').modal('hide');
+                        toastr.success(data.Msg);
+
+                    }
+
+                },
+                error: function (data) {
+                    setTimeout(function () { dialog.modal('hide'); }, 1000);
+                    toastr.error(data);
+                }
+
+            });
+
+
+        });
+
+</script>
+
+
+
+

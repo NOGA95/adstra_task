@@ -35,6 +35,15 @@ namespace adstra_task
             services.AddDbContext<AuthDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AuthDBContextConnection")));
             services.AddRazorPages();
             services.AddScoped<IUserListRepo, UserListRepo>();
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredLength = 0;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = false;
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

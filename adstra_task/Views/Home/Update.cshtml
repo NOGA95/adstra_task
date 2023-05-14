@@ -5,7 +5,7 @@
         <div class="col-6 offset-3">
             <div class="card">
                 <div class="card-header">
-                    <h1 class="text-center text-primary">User InFo</h1>
+                    <h1 class="text-center text-primary">Update User</h1>
                 </div>
                 <div class="card-body">
                     <form method="post" asp-action="Update">
@@ -31,7 +31,7 @@
 
                         </div>
                         <div class="form-group">
-                            <a asp-action="Edit"  class="btn btn-sm btn-outline-success floatright " asp-route-id="@Model.Id">Update</a>
+                            <input type="submit" value="Update" class="btn btn-sm btn-outline-success floatright" />
                             <a asp-action="Index" class="btn btn-outline-info btn-sm floatright">Back To List</a>
                         </div>
                     </form>
