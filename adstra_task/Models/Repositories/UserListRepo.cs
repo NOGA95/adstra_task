@@ -54,9 +54,9 @@ namespace adstra_task.Models.Repositories
         {
             return _context.usersLists.FirstOrDefault(m => m.Id == userid);
         }
-        public void Update(EditUserVM ObjToUpdate)
+        public void Update(EditUserVM ObjUpdate)
         {
-            var ObjToUpdate = _context.usersLists.FirstOrDefault(m => m.Id == Id);
+            var ObjToUpdate = _context.usersLists.FirstOrDefault(m => m.Id == ObjUpdate.Id);
             if (ObjToUpdate != null)
             {
                 ObjToUpdate.FirstName = ObjToUpdate.FirstName;
