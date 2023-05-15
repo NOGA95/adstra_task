@@ -34,6 +34,7 @@ namespace adstra_task.Controllers
 
         }
 
+       
         public IActionResult Index()
         {
             return View(_application.Users.ToList());
@@ -93,7 +94,7 @@ namespace adstra_task.Controllers
                 };
 
                  _users.Update(model);
-                var user =_userManager.UpdateAsync(model);
+                var user =await _userManager.UpdateAsync(model);
                 return RedirectToAction("Index", user);
 
             }
@@ -103,6 +104,71 @@ namespace adstra_task.Controllers
 
             }
             
+
+        }
+
+
+
+        [HttpGet]
+        public IActionResult Delete(string id)
+        {
+            try
+            {
+                var user = _users.GetUserByID(id);
+                if (user == null)
+                {
+                    ViewBag.ErrorMessage = $"User With Id = {id} cannot be found";
+                    return View("NotFound");
+                }
+                else
+                {
+                    var model = new EditUserVM
+                    {
+                        Id = user.Id,
+                        Email = user.Email,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        PhoneNumber = user.PhoneNumber
+
+                    };
+
+                    return View(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                string s = ex.Message;
+                return View("Not Found");
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(EditUserVM DeleteUser)
+        {
+            try
+            {
+                var model = new ApplicationUser
+                {
+                    Id = DeleteUser.Id,
+                    Email = DeleteUser.Email,
+                    FirstName = DeleteUser.FirstName,
+                    LastName = DeleteUser.LastName,
+                    PhoneNumber = DeleteUser.PhoneNumber
+
+                };
+
+                _users.Delete(model);
+                var user = await _userManager.DeleteAsync(model);
+                return RedirectToAction("Index", user);
+
+            }
+            catch (Exception ex)
+            {
+                return View("NotFound");
+
+            }
+
 
         }
         public async Task<IActionResult> Profile()

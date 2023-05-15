@@ -31,6 +31,9 @@ namespace adstra_task.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
+
+       
+
         [BindProperty]
         public InputModel Input { get; set; }
 
@@ -75,6 +78,7 @@ namespace adstra_task.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            returnUrl ??= Url.Content("~/Home/Index");
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 

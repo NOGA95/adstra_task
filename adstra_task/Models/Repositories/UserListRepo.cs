@@ -39,9 +39,9 @@ namespace adstra_task.Models.Repositories
             }
         }
 
-        public void Delete(string Id)
+        public void Delete(ApplicationUser ObjDelete)
         {
-            var ObjToDelete = _context.usersLists.SingleOrDefault(m => m.Id == Id);
+            var ObjToDelete = _context.usersLists.SingleOrDefault(m => m.Id == ObjDelete.Id);
             if (ObjToDelete != null)
             {
                 _context.usersLists.Remove(ObjToDelete);

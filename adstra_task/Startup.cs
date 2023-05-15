@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Data.SqlClient;
 using adstra_task.Data;
 using adstra_task.Models.Repositories;
+using adstra_task.Areas.Identity.Data;
 
 namespace adstra_task
 {
@@ -44,6 +45,10 @@ namespace adstra_task
                 options.Password.RequireLowercase = false;
             });
 
+            //services.AddDefaultIdentity<IdentityUser>().AddDefaultTokenProviders()
+            //    .AddRoles<IdentityRole>()
+            //    .AddEntityFrameworkStores<AuthDBContext>();
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,6 +78,10 @@ namespace adstra_task
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
         }
+
+
+
     }
 }

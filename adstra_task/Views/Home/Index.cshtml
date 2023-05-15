@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-8 offset-2">
             <h1 class="text-center text-primary">All Users</h1>
-            <a class="btn btn-sm btn-success m-1" asp-area="Identity" asp-page="/Account/Register">Create new User</a>
+            <a class="btn btn-sm btn-success m-1" asp-area="Identity" asp-page="/Account/RegisterNewUser">Create new User</a>
             <table class="table table-bordered">
                 <tr class="text-center">
                     @*<th>UserID</th>*@
@@ -15,6 +15,8 @@
                     <th>Last Name</th>
                     <th>Phone Number</th>
                     <th>E-mail</th>
+                    <th>Update</th>
+                    <th>Delete</th>
                 </tr>
                 @foreach (var d in Model)
                 {
@@ -27,6 +29,9 @@
                         <td class="table-warning text-center">@d.Email</td>
                         <td>
                             <a class="btn btn-sm btn-warning" asp-controller="Home" asp-action="Update" asp-route-id="@d.Id">Update</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@d.Id">Delete</a>
                         </td>
                     </tr>
 

@@ -10,8 +10,8 @@ namespace adstra_task.Models.Repositories
    public interface IUserListRepo
     {
         public ApplicationUser GetUserByID(string userid);
-        void Update(ApplicationUser ObjToUpdate);
-        void Delete(string id);
+        void Update(ApplicationUser ObjUpdate);
+        void Delete(ApplicationUser ObjDelete);
         IEnumerable<ApplicationUser>  GetUserIDByName(string username);
     }
 }
