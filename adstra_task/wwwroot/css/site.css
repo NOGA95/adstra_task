@@ -59,14 +59,14 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-  font-family : "Roboto",sans-serif;
-  background : url('image.jpg');
-  background-size:cover;
-  margin :0;
-  padding :0;
-
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    font-family: "Roboto",sans-serif;
+    background: url('/image/image11.jpg');
+    background-repeat :no-repeat;
+    background-size :cover;
+    margin: 0;
+    padding: 0;
 }
 .footer {
   position: absolute;

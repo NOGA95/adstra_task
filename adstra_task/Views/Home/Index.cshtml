@@ -3,20 +3,20 @@
     ViewData["Title"] = "Index";
 }
 
-<div class="container">
+<div class="container" style="align-items:center" >
     <div class="row">
-        <div class="col-8 offset-2">
+        <div class="col-8 offset-2" style="background-color: black; text-align:center">
             <h1 class="text-center text-primary">All Users</h1>
             <a class="btn btn-sm btn-success m-1" asp-area="Identity" asp-page="/Account/RegisterNewUser">Create new User</a>
             <table class="table table-bordered">
-                <tr class="text-center">
+                <tr class="text-center" style="background-color: black">
                     @*<th>UserID</th>*@
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Phone Number</th>
-                    <th>E-mail</th>
-                    <th>Update</th>
-                    <th>Delete</th>
+                    <th style="color: white" class="text-center">First Name</th>
+                    <th style="color: white" class="text-center">Last Name</th>
+                    <th style="color: white" class="text-center">Phone Number</th>
+                    <th style="color: white" class="text-center">E-mail</th>
+                    <th style="color: white" class="text-center">Update</th>
+                    <th style="color: white" class=" text-center">Delete</th>
                 </tr>
                 @foreach (var d in Model)
                 {
