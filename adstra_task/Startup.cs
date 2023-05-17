@@ -34,7 +34,10 @@ namespace adstra_task
             services.AddControllersWithViews();
             services.AddMvc();
             services.AddDbContext<AuthDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AuthDBContextConnection")));
-            services.AddRazorPages();
+            services.AddRazorPages( options => {
+
+                options.Conventions.AuthorizePage("/RegisterNewUse");
+            });
             services.AddScoped<IUserListRepo, UserListRepo>();
             services.Configure<IdentityOptions>(options =>
             {
@@ -45,9 +48,11 @@ namespace adstra_task
                 options.Password.RequireLowercase = false;
             });
 
-            //services.AddDefaultIdentity<IdentityUser>().AddDefaultTokenProviders()
-            //    .AddRoles<IdentityRole>()
-            //    .AddEntityFrameworkStores<AuthDBContext>();
+
+            services.AddIdentity<ApplicationUser ,IdentityRole>()
+                .AddEntityFrameworkStores<AuthDBContext>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
            
         }
 

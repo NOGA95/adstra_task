@@ -1,0 +1,14 @@
+﻿
+@model adstra_task.ViewModel.RoleFormVM
+
+
+    <form method="post" asp-action="AddNewRole">
+        <div class="input-group mb-3"  style="background-color: black">
+     <input asp-for="Name " class="form-control" placeholder="Role Name" />
+<div class="input-group-append">
+
+    <button type="submit" class="btn btn-primary">Add New Role</button>
+</div>
+      </div>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </form>

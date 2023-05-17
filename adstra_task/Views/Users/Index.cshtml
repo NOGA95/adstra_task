@@ -1,0 +1,38 @@
+﻿@model IEnumerable<adstra_task.ViewModel.UserViewModel>
+@{
+    ViewData["Title"] = "Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Users</h1>
+<table class=" table table-striped mt-4" >
+    <thead>
+        <tr class="text-center" style="background-color: black">
+            <th style="color: white" class="text-center">First Name</th>
+            <th style="color: white" class="text-center">Last Name</th>
+            <th style="color: white" class="text-center">UserName</th>
+            <th style="color: white" class="text-center">E-mail</th>
+            <th style="color: white" class="text-center">Roles</th>
+            <th style="color: white" class="text-center">Actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+            {
+        <tr>
+            <td class="table-secondary text-center">@user.FirstName</td>
+            <td class="table-success text-center">@user.LastName</td>
+            <td class="table-warning text-center">@user.UserName</td>
+            <td class="table-warning text-center">@user.Email</td>
+            <td class="table-warning text-center">@string.Join("," ,user.Roles.ToList())<td>
+            <td class="table-warning text-center">
+                <a class="btn btn-sm btn-warning" asp-controller="Users" asp-action="ManageRoles" asp-route-id="@user.Id">Manage Roles</a>
+            </td>
+
+        </tr>
+            }
+    </tbody>
+
+</table>
+

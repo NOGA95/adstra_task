@@ -45,6 +45,7 @@ namespace adstra_task.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Update(string id)
         {
@@ -108,7 +109,7 @@ namespace adstra_task.Controllers
         }
 
 
-
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Delete(string id)
         {
